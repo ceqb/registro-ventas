@@ -4,13 +4,13 @@ server:
     context-path: /api/v1
 spring:
   datasource:
-    url: jdbc:mysql://sql307.infinityfree.com:3306/if0_38317039_db_ventacliente
-    username: if0_38317039
-    password: 3370ZITsm
+    url: jdbc:postgresql://dpg-d1m5crumcj7s739s6ptg-a.postgres.render.com:5432/ventas_db_g4fp
+    username: ventas_db_g4fp_user
+    password: PbqWxx2GLKgq9kgGNGIocGNFXHKJKzPG
     driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:
-    database-platform: org.hibernate.dialect.MySQLDialect
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
     generate-ddl: true
     show-sql: false
     hibernate:
