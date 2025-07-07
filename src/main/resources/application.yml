@@ -7,7 +7,7 @@ spring:
     url: jdbc:postgresql://dpg-d1m5crumcj7s739s6ptg-a.postgres.render.com:5432/ventas_db_g4fp
     username: ventas_db_g4fp_user
     password: PbqWxx2GLKgq9kgGNGIocGNFXHKJKzPG
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    driver-class-name: org.postgresql.Driver
 
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
