@@ -4,9 +4,9 @@ server:
     context-path: /api/v1
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/bd_clienteventa
-    username: root
-    password: 1234
+    url: jdbc:mysql://sql307.infinityfree.com:3306/if0_38317039_db_ventacliente
+    username: if0_38317039
+    password: 3370ZITsm
     driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:
