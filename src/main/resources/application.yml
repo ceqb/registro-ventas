@@ -1,0 +1,26 @@
+server:
+  port: 9002
+  servlet:
+    context-path: /api/v1
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/bd_clienteventa
+    username: root
+    password: 1234
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    database-platform: org.hibernate.dialect.MySQLDialect
+    generate-ddl: true
+    show-sql: false
+    hibernate:
+      ddl-auto: update
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    open-in-view: false
+
+  error:
+    include-message: always
+    include-binding-errors: always
+    include-stacktrace: on_trace_param
+    include-exception: false
