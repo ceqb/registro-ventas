@@ -1,7 +1,9 @@
-FROM eclipse-temurin:17-jdk-alpine
-# Crear directorio de trabajo dentro del contenedor
+FROM maven:3.9.6-eclipse-temurin-17-alpine AS build
 WORKDIR /app
-# Copiar el JAR generado al contenedor
-COPY target/VentaCliente-0.0.1-SNAPSHOT.jar app.jar
-# Comando para ejecutar el JAR
+COPY . .
+RUN mvn clean package -DskipTests
+
+FROM eclipse-temurin:17-jdk-alpine
+WORKDIR /app
+COPY --from=build /app/target/VentaCliente-0.0.1-SNAPSHOT.jar app.jar
 ENTRYPOINT ["java", "-jar", "app.jar"]
