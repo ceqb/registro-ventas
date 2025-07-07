@@ -1,14 +1,7 @@
-# Imagen base con Java 17
-FROM openjdk:17-jdk-slim
-
-# Directorio de trabajo dentro del contenedor
+FROM eclipse-temurin:17-jdk-alpine
+# Crear directorio de trabajo dentro del contenedor
 WORKDIR /app
-
-# Copiar el JAR generado por Maven
-COPY target/*.jar app.jar
-
-# Exponer el puerto (debe coincidir con server.port en application.yml)
-EXPOSE 9002
-
-# Comando para ejecutar la aplicación
+# Copiar el JAR generado al contenedor
+COPY target/VentaCliente-0.0.1-SNAPSHOT.jar app.jar
+# Comando para ejecutar el JAR
 ENTRYPOINT ["java", "-jar", "app.jar"]
