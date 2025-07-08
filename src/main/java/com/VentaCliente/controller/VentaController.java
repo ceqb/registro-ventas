@@ -37,7 +37,11 @@ public class VentaController {
     private final VentaService ventaService;
     private final ClienteService clienteService;
     private final VentaReportService ventaReportService;
-
+    // Redirige desde "/" o "/home" hacia "/ventas/home"
+    @GetMapping({"/", "/home"})
+    public String redirectToVentasHome() {
+        return "redirect:/ventas/home";
+    }
     @GetMapping({ "/home" })
     public String biblioteca(Model modelo) {
         modelo.addAttribute("listVenta", ventaService.listVenta());
