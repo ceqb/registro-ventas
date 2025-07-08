@@ -7,8 +7,8 @@ import java.util.List;
 
 public interface VentaService {
 
-    List<VentaDTO> listVenta(); //LISTAR CATEGORIA
-    VentaDTO  save(VentaDTO ventaDTO); //GUARDAR CATEGORIA
+    List<VentaDTO> listVenta();
+    VentaDTO  save(VentaDTO ventaDTO);
 
 
 }

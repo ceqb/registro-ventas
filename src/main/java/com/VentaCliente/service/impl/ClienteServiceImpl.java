@@ -5,6 +5,7 @@ import com.VentaCliente.dto.ClienteDTO;
 import com.VentaCliente.dto.VentaDTO;
 import com.VentaCliente.model.Cliente;
 
+import com.VentaCliente.model.Venta;
 import com.VentaCliente.repository.ClienteRepository;
 
 import com.VentaCliente.service.ClienteService;
@@ -30,6 +31,13 @@ public class ClienteServiceImpl implements ClienteService {
         return ClienteDTO.toDto(clientes);
     }
 
-
+    @Override
+    public ClienteDTO save(ClienteDTO clienteDTO) {
+        Cliente cliente = Cliente.toModel(clienteDTO);
+        Cliente clienteGuardado = clienteRepository.save(cliente);
+        return ClienteDTO.toDto(clienteGuardado);
     }
+
+
+}
 

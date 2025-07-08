@@ -39,7 +39,7 @@
 			<div class="nav-lateral-divider full-reset"></div>
 			<div class="full-reset nav-lateral-list-menu">
 				<ul class="list-unstyled">
-					<li><a th:href="@{/home}"><i class="zmdi zmdi-home zmdi-hc-fw"></i>&nbsp;&nbsp;
+					<li><a th:href="@{/ventas/home}"><i class="zmdi zmdi-home zmdi-hc-fw"></i>&nbsp;&nbsp;
 							Inicio</a></li>
 					<li><a th:href="@{/ventas/ver-reporte-pdf}" target="_blank"><i class="zmdi zmdi-trending-up zmdi-hc-fw"></i>&nbsp;&nbsp; Reportes y
 							estadísticas</a></li>
@@ -110,23 +110,15 @@
 			<div class="div-table">
 				<div class="div-table-row div-table-head">
 					<div class="div-table-cell">#</div>
-					<div class="div-table-cell">producto</div>
-					<div class="div-table-cell">cantidad</div>
-					<div class="div-table-cell">precioUnitario</div>
-					<div class="div-table-cell">total</div>
-					<div class="div-table-cell">estado</div>
-					<div class="div-table-cell">cliente</div>
+					<div class="div-table-cell">Nombre y Apellidos</div>
+					<div class="div-table-cell">Telefono</div>
 					<div class="div-table-cell">Acciones</div>
 				</div>
 				<table th:each="venta : ${listVenta}">
 					<div class="div-table-row">
-						<div class="div-table-cell" th:text="${venta.id_ventas}">#</div>
-						<div class="div-table-cell" th:text="${venta.producto}">producto</div>
-						<div class="div-table-cell" th:text="${venta.cantidad}">cantidad</div>
-						<div class="div-table-cell" th:text="${venta.precioUnitario}">precioUnitario</div>
-						<div class="div-table-cell" th:text="${venta.total}">total</div>
-						<div class="div-table-cell" th:text="${venta.estadoDescripcion}">estado</div>
-						<div class="div-table-cell" th:text="${venta.clienteDTO.nombre}">cliente</div>
+						<div class="div-table-cell" th:text="${venta.id_cliente}">#</div>
+						<div class="div-table-cell" th:text="${venta.nombre}">Nombre y Apellidos</div>
+						<div class="div-table-cell" th:text="${venta.telefono}">Telefono</div>
 						<!--
                         <div class="div-table-cell">
                         <a th:href="@{'/ventas/listVenta'+'/'+ ${venta.id_ventas}}" class="btn btn-info">Editar</a>

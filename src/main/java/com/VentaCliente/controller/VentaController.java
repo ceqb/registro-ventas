@@ -38,11 +38,7 @@ public class VentaController {
     private final ClienteService clienteService;
     private final VentaReportService ventaReportService;
 
-    @GetMapping({"/home" })
-    public String biblioteca(Model modelo) {
-        modelo.addAttribute("listVenta", ventaService.listVenta());
-        return "home"; // nos retorna al archivo estudiantes
-    }
+
     @GetMapping("/ver-reporte-pdf")
     public ResponseEntity<byte[]> generarReporteVentasPdf() {
         try {
