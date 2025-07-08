@@ -4,7 +4,7 @@ server:
     context-path: /api/v1
 spring:
   datasource:
-    url: jdbc:postgresql://ventas_db_g4fp_user:PbqWxx2GLKgq9kgGNGIocGNFXHKJKzPG@dpg-d1m5crumcj7s739s6ptg-a:5432/ventas_db_g4fp
+    url: jdbc:postgresql://dpg-d1m5crumcj7s739s6ptg-a:5432/ventas_db_g4fp
     username: ventas_db_g4fp_user
     password: PbqWxx2GLKgq9kgGNGIocGNFXHKJKzPG
     driver-class-name: org.postgresql.Driver
