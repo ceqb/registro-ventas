@@ -1,5 +1,5 @@
 server:
-  port: ${PORT:9002}  # Usa el puerto que Render le asigne dinámicamente
+  port: ${PORT:8080}  # Usa el puerto que Render le asigne dinámicamente
   servlet:
     context-path: /api/v1
 
