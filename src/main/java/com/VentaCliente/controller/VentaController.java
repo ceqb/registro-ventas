@@ -42,7 +42,7 @@ public class VentaController {
     public String redirectToVentasHome() {
         return "redirect:/ventas/home";
     }
-    @GetMapping({ "/home" })
+    @GetMapping({ "/", "/home" })
     public String biblioteca(Model modelo) {
         modelo.addAttribute("listVenta", ventaService.listVenta());
         return "home"; // nos retorna al archivo estudiantes
