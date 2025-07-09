@@ -106,44 +106,47 @@
 			</div>
 		</div>
 		<div class="container-fluid">
-			<h2 class="text-center all-tittles">Listado de tareas</h2>
-
-			<!-- Si hay ventas -->
-			<div th:if="${listVenta != null and !listVenta.isEmpty()}" class="div-table">
-				<div class="div-table-row div-table-head">
-					<div class="div-table-cell">#</div>
-					<div class="div-table-cell">Producto</div>
-					<div class="div-table-cell">Cantidad</div>
-					<div class="div-table-cell">Precio Unitario</div>
-					<div class="div-table-cell">Total</div>
-					<div class="div-table-cell">Estado</div>
-					<div class="div-table-cell">Cliente</div>
-					<div class="div-table-cell">Acciones</div>
-				</div>
-
-				<div class="div-table-row" th:each="venta, iter : ${listVenta}">
-					<div class="div-table-cell" th:text="${iter.index + 1}">#</div>
-					<div class="div-table-cell" th:text="${venta.producto}">Producto</div>
-					<div class="div-table-cell" th:text="${venta.cantidad}">Cantidad</div>
-					<div class="div-table-cell" th:text="${venta.precioUnitario}">Precio Unitario</div>
-					<div class="div-table-cell" th:text="${venta.total}">Total</div>
-					<div class="div-table-cell" th:text="${venta.estadoDescripcion}">Estado</div>
-					<div class="div-table-cell" th:text="${venta.clienteDTO.nombre}">Cliente</div>
-					<div class="div-table-cell">
-						<!-- Botones si los tienes -->
-						<!-- <a href="#" class="btn btn-info">Editar</a> -->
-						<!-- <a href="#" class="btn btn-danger">Eliminar</a> -->
-					</div>
-				</div>
+			<h2 class="text-center all-tittles">Listado de Tareas</h2>
+			<div class="table-responsive">
+				<table class="table table-hover">
+					<thead class="thead-light">
+					<tr>
+						<th>#</th>
+						<th>Producto</th>
+						<th>Cantidad</th>
+						<th>Precio Unitario</th>
+						<th>Total</th>
+						<th>Estado</th>
+						<th>Cliente</th>
+						<th>Acciones</th>
+					</tr>
+					</thead>
+					<tbody>
+					<tr th:if="${sinVentas}">
+						<td colspan="8" class="text-center alert alert-warning">
+							No hay ventas registradas por el momento.
+						</td>
+					</tr>
+					<tr th:each="venta : ${listVenta}">
+						<td th:text="${venta.id_ventas}">#</td>
+						<td th:text="${venta.producto}">Producto</td>
+						<td th:text="${venta.cantidad}">Cantidad</td>
+						<td th:text="${venta.precioUnitario}">Precio</td>
+						<td th:text="${venta.total}">Total</td>
+						<td th:text="${venta.estadoDescripcion}">Estado</td>
+						<td th:text="${venta.clienteDTO.nombre}">Cliente</td>
+						<td>
+							<!-- Aquí puedes agregar botones si deseas -->
+							<!--
+                            <a th:href="@{'/ventas/editar/' + ${venta.id_ventas}}" class="btn btn-info btn-sm">Editar</a>
+                            <a th:href="@{'/ventas/eliminar/' + ${venta.id_ventas}}" class="btn btn-danger btn-sm">Eliminar</a>
+                            -->
+						</td>
+					</tr>
+					</tbody>
+				</table>
 			</div>
-
-			<!-- Si NO hay ventas -->
-			<div th:if="${listVenta == null or listVenta.isEmpty()}">
-				<div class="alert alert-warning text-center" style="margin-top: 15px;">
-					No hay ventas registradas por el momento.
-				</div>
-			</div>
-		</div>6
+		</div>
 		<div class="modal fade" tabindex="-1" role="dialog" id="ModalHelp">
 			<div class="modal-dialog modal-lg">
 				<div class="modal-content">
