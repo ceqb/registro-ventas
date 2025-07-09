@@ -118,6 +118,11 @@
 					<div class="div-table-cell">cliente</div>
 					<div class="div-table-cell">Acciones</div>
 				</div>
+				<div th:if="${sinVentas}">
+					<div class="alert alert-warning text-center" role="alert">
+						No hay ventas registradas por el momento.
+					</div>
+				</div>
 				<table th:each="venta : ${listVenta}">
 					<div class="div-table-row">
 						<div class="div-table-cell" th:text="${venta.id_ventas}">#</div>

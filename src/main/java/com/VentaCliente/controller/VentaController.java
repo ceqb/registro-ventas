@@ -102,12 +102,12 @@ public class VentaController {
     }
     @GetMapping("/listVenta")
     public String vistaVentas(Model model) {
-        var getList = ventaService.listVenta();
-        if (getList == null || getList.isEmpty()) {
-            throw new ResourceNotFoundException("ventas no found");
-        }
-        model.addAttribute("listVenta", getList);
-        return "listVenta"; // Apunta a ventas.html
+        var ventas = ventaService.listVenta();
+
+        model.addAttribute("listVenta", ventas);
+        model.addAttribute("sinVentas", ventas == null || ventas.isEmpty());
+
+        return "listVenta";
     }
 
     //GUARDAR
