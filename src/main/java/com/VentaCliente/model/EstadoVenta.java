@@ -5,7 +5,8 @@ public enum EstadoVenta {
 
     PAGO("PAGADO"),
     DEUDA("CON DEUDA"),
-    EN_PROCESO("EN PROCESO");
+    EN_PROCESO("EN PROCESO"),
+    DEVOLUCION("DEVOLVIO");
 
     private final String descripcion;
 
