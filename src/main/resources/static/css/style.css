@@ -534,13 +534,14 @@ input.material-control:focus ~ .highlight {
 color: #000000;	
 }
 .tile{
-    display: inline-block;
-    width: 220px;
+    display: block;
+    width: 100%;
+    max-width: 320px;
     height: auto;
     border: 1px solid #E1E1E1;
     position: relative;
     cursor: pointer;
-    margin: 10px;
+    margin: 10px auto;
 }
 .tile-icon,.tile-num{
     height: 110px;

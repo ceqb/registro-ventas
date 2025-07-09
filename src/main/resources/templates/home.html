@@ -17,7 +17,6 @@
 	<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
 	<link rel="stylesheet" th:href="@{/css/jquery.mCustomScrollbar.css}">
 	<link rel="stylesheet" th:href="@{/css/style.css}">
-	<head>
 </head>
 
 <body>
@@ -36,7 +35,6 @@
 						style="width:55%;">
 				</figure>
 				<p class="text-center" style="padding-top: 15px;">Sistema registro de ventas</p>
-
 			</div>
 			<div class="nav-lateral-divider full-reset"></div>
 			<div class="full-reset nav-lateral-list-menu">
@@ -57,7 +55,7 @@
 				<li class="all-tittles exit-system-button" th:if="${session.usuarioLogueado != null}">
 					<span>Bienvenido, <strong th:text="${session.usuarioLogueado.nombre}">Usuario</strong></span>
 				</li></li>-->
-				<li class="all-tittles">
+				<li style="color:#fff; cursor:default;">
 					<span>Bienvenido, <strong th:text="${session.usuarioLogueado.nombre}">Usuario</strong></span>
 				</li>
 				<li class="tooltips-general exit-system-button" th:data-href="@{/logout}" data-placement="bottom"
