@@ -106,7 +106,7 @@
 			</div>
 		</div>
 		<div class="container-fluid">
-			<h2 class="text-center all-tittles">Listado de tareas</h2>
+			<h2 class="text-center all-tittles">listado de tareas</h2>
 			<div class="div-table">
 				<div class="div-table-row div-table-head">
 					<div class="div-table-cell">#</div>
@@ -118,30 +118,29 @@
 					<div class="div-table-cell">cliente</div>
 					<div class="div-table-cell">Acciones</div>
 				</div>
-
-				<!-- Si no hay ventas -->
+				<!-- Fila vacía cuando no hay ventas -->
 				<div th:if="${sinVentas}" class="div-table-row">
-					<div class="div-table-cell text-center alert alert-warning" style="grid-column: span 8; width: 100%;">
+					<div class="div-table-cell full-span text-center alert alert-warning">
 						No hay ventas registradas por el momento.
 					</div>
 				</div>
-
-				<!-- Si hay ventas -->
-				<div th:each="venta : ${listVenta}" class="div-table-row">
-					<div class="div-table-cell" th:text="${venta.id_ventas}">#</div>
-					<div class="div-table-cell" th:text="${venta.producto}">producto</div>
-					<div class="div-table-cell" th:text="${venta.cantidad}">cantidad</div>
-					<div class="div-table-cell" th:text="${venta.precioUnitario}">precioUnitario</div>
-					<div class="div-table-cell" th:text="${venta.total}">total</div>
-					<div class="div-table-cell" th:text="${venta.estadoDescripcion}">estado</div>
-					<div class="div-table-cell" th:text="${venta.clienteDTO.nombre}">cliente</div>
-					<!--<div class="div-table-cell">
-               		 Botones opcionales
-                    <a th:href="@{'/ventas/listVenta/' + ${venta.id_ventas}}" class="btn btn-info btn-sm">Editar</a>
-                    <a href="#" class="btn btn-danger btn-sm"
-                       th:attr="onclick='deleteTask(' + ${venta.id_ventas} + ');return false;'">Eliminar</a>
-					</div>-->
-				</div>
+				<table th:each="venta : ${listVenta}">
+					<div class="div-table-row">
+						<div class="div-table-cell" th:text="${venta.id_ventas}">#</div>
+						<div class="div-table-cell" th:text="${venta.producto}">producto</div>
+						<div class="div-table-cell" th:text="${venta.cantidad}">cantidad</div>
+						<div class="div-table-cell" th:text="${venta.precioUnitario}">precioUnitario</div>
+						<div class="div-table-cell" th:text="${venta.total}">total</div>
+						<div class="div-table-cell" th:text="${venta.estadoDescripcion}">estado</div>
+						<div class="div-table-cell" th:text="${venta.clienteDTO.nombre}">cliente</div>
+						<!--
+                        <div class="div-table-cell">
+                        <a th:href="@{'/ventas/listVenta'+'/'+ ${venta.id_ventas}}" class="btn btn-info">Editar</a>
+                        <a href="/ventas/listVenta" class="btn btn-danger" th:attr="onclick='deleteTask(' + ${venta.id_ventas} + ');return false;'" >Eliminar</a>
+                        </div>
+                        -->
+					</div>
+				</table>
 			</div>
 		</div>
 		<div class="modal fade" tabindex="-1" role="dialog" id="ModalHelp">

@@ -788,3 +788,12 @@ color: #000000;
         .toggle-container label:hover {
             color: #0056b3;
         }
+
+        .full-span {
+            width: 100%;
+            grid-column: 1 / -1; /* si usas CSS Grid */
+            text-align: center;
+            font-style: italic;
+            background-color: #fdf8e4;
+            border: 1px solid #eee;
+        }
