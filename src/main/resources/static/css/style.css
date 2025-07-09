@@ -30,6 +30,17 @@ html, body {
     padding: 0;
     width: 100%;
 }
+
+    .all-tittles span {
+      cursor: default;
+      transition: background-color 0.3s ease;
+    }
+
+    .all-tittles span:hover {
+      background-color: rgba(0, 0, 0, 0.05);
+      border-radius: 5px;
+      padding: 2px 6px;
+    }
 .material-input-disabled{ pointer-events: none;}
 ul.nav-tabs li a:focus{ outline: none; }
 .btn:focus, .btn:active{ outline: none !important; }

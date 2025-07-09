@@ -1,0 +1,3 @@
+--INSERT INTO usuario (id, usuario, nombre, clave) VALUES (1, 'admin', 'Administrador', 'admin123');
+--INSERT INTO usuario (id, usuario, nombre, clave) VALUES (2, 'Carlos', 'Carlos Quiroz', 'carlos123');
+--INSERT INTO usuario (id, usuario, nombre, clave) VALUES (2, 'Gabriela', 'Gabriela Chilon', 'gabriela123');
