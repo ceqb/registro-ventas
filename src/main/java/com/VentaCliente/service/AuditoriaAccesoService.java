@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 @Service
 @RequiredArgsConstructor
 public class AuditoriaAccesoService {
-/*
+
     @Autowired
     private WebClient.Builder webClientBuilder;
     public void registrarAuditoriaAcceso(String usuario, String ip, String navegador, boolean exitoso, String observacion) {
@@ -33,6 +33,4 @@ public class AuditoriaAccesoService {
                 .bodyToMono(Void.class)
                 .subscribe(); // asíncrono
     }
-
- */
 }

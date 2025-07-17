@@ -42,13 +42,11 @@ public class VentaServiceImpl implements VentaService {
         Venta venta = Venta.toModel(ventaDTO);
         venta.setFechaVenta(LocalDateTime.now());
         Venta ventaGuardada = ventaRepository.save(venta);
-       /* auditoriaClient.registrar(
+        auditoriaClient.registrar(
                 "Venta",
                 "CREACIÓN",
                 "Se registró una nueva venta con ID: " + ventaGuardada.getId_ventas()
         );
-
-        */
 
         return VentaDTO.toDto(ventaGuardada);
     }

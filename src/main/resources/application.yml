@@ -9,9 +9,9 @@ spring:
     #url: jdbc:mysql://localhost:3306/bd_clienteventa
     #username: root
     #password: 1234
-   #driver-class-name: com.mysql.cj.jdbc.Driver
+    #driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:postgresql://dpg-d1m5crumcj7s739s6ptg-a/ventas_db_g4fp
-    #sername: ventas_db_g4fp_user
+    username: ventas_db_g4fp_user
     password: PbqWxx2GLKgq9kgGNGIocGNFXHKJKzPG
     driver-class-name: org.postgresql.Driver
   #web:

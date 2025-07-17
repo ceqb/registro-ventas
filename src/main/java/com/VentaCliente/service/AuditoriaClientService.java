@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @RequiredArgsConstructor
 public class AuditoriaClientService {
     private final WebClient.Builder webClientBuilder;
-/*
+
     private static final String AUDITORIA_URL = "http://localhost:9010/api/v1/auditoria/registrar";
 
     public void registrar(String entidad, String accion, String descripcion) {
@@ -30,6 +30,4 @@ public class AuditoriaClientService {
                 .bodyToMono(Void.class)
                 .subscribe();
     }
-    */
-
 }

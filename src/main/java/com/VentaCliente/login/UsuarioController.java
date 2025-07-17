@@ -53,16 +53,13 @@ public class UsuarioController {
         Optional<UsuarioDTO> user = usuarioService.login(usuario, clave);
         if (user.isPresent()) {
             session.setAttribute("usuarioLogueado", user.get());
-/*
+
             auditoriaAccesoService.registrarAuditoriaAcceso(
                     usuario,"La ip con la que accedio: " + ip, "logro acceder al Login de forma exitosa " + userAgent, true, "Login exitoso"
             );
 
- */
-
             return "redirect:/preloader";
         } else {
-            /*
             auditoriaAccesoService.registrarAuditoriaAcceso(
                     usuario,
                     "La ip con la que se intento acceder: " + ip,
@@ -71,18 +68,13 @@ public class UsuarioController {
                     "Credenciales incorrectas"
             );
 
-             */
-
             model.addAttribute("error", "Usuario o contraseña incorrectos.");
             return "login";
         }
         } catch (RuntimeException ex) {
-            /*
             auditoriaAccesoService.registrarAuditoriaAcceso(
                     usuario, "IP: " + ip, userAgent, false, "Intento de acceso bloqueado"
             );
-
-             */
             model.addAttribute("error", ex.getMessage());
             return "desbloquearUsuario"; // redirige al formulario
         }
