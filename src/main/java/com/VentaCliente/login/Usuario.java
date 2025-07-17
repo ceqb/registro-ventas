@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -33,6 +34,21 @@ public class Usuario implements Serializable {
     @Column(name = "clave")
     private String clave;
 
+    @Column(name = "correo")
+    private String correo;
+
+    @Column(name = "intentos_fallidos")
+    private Integer intentosFallidos;
+
+    @Column(name = "expiracion_codigo")
+    private LocalDateTime expiracionCodigo;
+
+    @Column(name = "bloqueado", nullable = false)
+    private boolean bloqueado ;
+
+    @Column(name = "codigo_desbloqueo")
+    private String codigoDesbloqueo;
+
     public static Usuario toModel(UsuarioDTO dto) {
         if (dto == null) return null;
 
@@ -41,6 +57,11 @@ public class Usuario implements Serializable {
                 .nombre(dto.getNombre())
                 .usuario(dto.getUsuario())
                 .clave(dto.getClave())
+                .correo(dto.getCorreo())
+                .expiracionCodigo(dto.getExpiracionCodigo())
+                .intentosFallidos(dto.getIntentosFallidos())
+                .bloqueado(dto.isBloqueado())
+                .codigoDesbloqueo(dto.getCodigoDesbloqueo())
                 .build();
     }
     public static List<Usuario> toModel(List<UsuarioDTO> dtos) {

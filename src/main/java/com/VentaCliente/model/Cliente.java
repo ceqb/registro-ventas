@@ -6,6 +6,7 @@ import com.VentaCliente.dto.ClienteDTO;
 import jakarta.persistence.*;
 import lombok.*;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -32,6 +33,9 @@ public class Cliente implements Serializable {
     @Column(name = "telefono")
     private String telefono;
 
+    @Column(name = "correo")
+    private String correo;
+
     // Relación con ventas
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Venta> ventas = new ArrayList<>();
@@ -44,6 +48,7 @@ public class Cliente implements Serializable {
                 .id(dto.getId())
                 .nombre(dto.getNombre())
                 .telefono(dto.getTelefono())
+                .correo(dto.getCorreo())
                 .ventas(Venta.toModel(dto.getVentas()))
                 .build();
     }

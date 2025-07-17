@@ -356,11 +356,12 @@ select.material-control-login:hover{
 }
 /*Pie de pagina================*/
 .footer{
-    background-color: var(--first-color);
-    height: auto;
-    color: #fff;
-    padding-top: 20px;
-    margin-top: 214px;
+     background-color: var(--first-color);
+        height: auto;
+        color: #fff;
+        padding-top: 20px;
+        /* --- CAMBIO AQUÍ --- */
+        margin-top: 20%;
 }
 .footer-copyright{
     height: 45px;

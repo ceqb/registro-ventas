@@ -52,9 +52,9 @@
                      class="img-responsive img-circle center-box">
             </figure>
             <li style="color:#fff; cursor:default;">
-                <span class="all-tittles">Admin Name</span>
+                <span>Bienvenido, <strong th:text="${session.usuarioLogueado.nombre}">Usuario</strong></span>
             </li>
-            <li class="tooltips-general exit-system-button" data-href="home" data-placement="bottom"
+            <li class="tooltips-general exit-system-button" th:data-href="@{/logout}" data-placement="bottom"
                 title="Salir del sistema">
                 <i class="zmdi zmdi-power"></i>
             </li>

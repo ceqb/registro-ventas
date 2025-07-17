@@ -40,11 +40,11 @@ public class VentaReportService {
         document.add(new Paragraph(" ")); // Espacio
 
         // Crear una tabla con el número de columnas de tu reporte (ej. 6 columnas para los campos de Venta)
-        PdfPTable table = new PdfPTable(6); // id_ventas, producto, cantidad, precioUnitario, total, estado
+        PdfPTable table = new PdfPTable(7); // id_ventas, producto, cantidad, precioUnitario, total, estado
         table.setWidthPercentage(100); // La tabla ocupará el 100% del ancho de la página
 
         // Encabezados
-        String[] headers = {"Cliente","Producto", "Cantidad", "P. Unitario", "Total", "Estado"};
+        String[] headers = {"Cliente","Producto", "Cantidad", "P. Unitario", "Total","Fecha Venta", "Estado"};
         for (String header : headers) {
             PdfPCell cell = new PdfPCell(new Phrase(header, encabezadoFont));
             cell.setBackgroundColor(BaseColor.LIGHT_GRAY);
@@ -60,6 +60,7 @@ public class VentaReportService {
             table.addCell(new Phrase(String.valueOf(venta.getCantidad()), contenidoFont));
             table.addCell(new Phrase(String.valueOf(venta.getPrecioUnitario()), contenidoFont));
             table.addCell(new Phrase(String.valueOf(venta.getTotal()), contenidoFont));
+            table.addCell(new Phrase(String.valueOf(venta.getFechaVenta()), contenidoFont));
             table.addCell(new Phrase(
                     venta.getEstado() != null ? venta.getEstado() : "N/A",
                     contenidoFont

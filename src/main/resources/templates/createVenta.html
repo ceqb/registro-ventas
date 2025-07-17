@@ -52,9 +52,9 @@
                      class="img-responsive img-circle center-box">
             </figure>
             <li style="color:#fff; cursor:default;">
-                <span class="all-tittles">Admin Name</span>
+                <span>Bienvenido, <strong th:text="${session.usuarioLogueado.nombre}">Usuario</strong></span>
             </li>
-            <li class="tooltips-general exit-system-button" data-href="home" data-placement="bottom"
+            <li class="tooltips-general exit-system-button" th:data-href="@{/logout}" data-placement="bottom"
                 title="Salir del sistema">
                 <i class="zmdi zmdi-power"></i>
             </li>
@@ -100,6 +100,11 @@
     <div>
         <label for="producto">Producto</label>
         <input type="text" id="producto" th:field="*{producto}" class="form-control" required />
+    </div>
+
+    <div>
+        <label for="fechaVenta">Fecha de la venta</label>
+        <input type="text" id="fechaVenta" th:field="*{fechaVenta}" class="form-control" required readonly />
     </div>
 
     <!-- Cantidad -->
@@ -158,6 +163,7 @@
 <script th:src="@{/js/jquery.mCustomScrollbar.concat.min.js}"></script>
 <script th:src="@{/js/main.js}"></script>
 <script th:src="@{/js/calcularTotalFrontend.js}"></script>
+<script th:src="@{/js/horaAutomatica.js}"></script>
 
 </body>
 </html>

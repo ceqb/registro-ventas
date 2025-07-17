@@ -19,7 +19,7 @@ public class LoginInterceptor implements HandlerInterceptor {
         String uri = request.getRequestURI();
 
         // Permitir acceso al login, css, imágenes y otros recursos públicos
-        if (estaLogueado || uri.contains("/login") || uri.contains("/css") || uri.contains("/js") || uri.contains("/img")) {
+        if (estaLogueado || uri.contains("/login") || uri.contains("/desbloquearUsuario") || uri.contains("/reenviar-codigo") || uri.contains("/css") || uri.contains("/js") || uri.contains("/img")) {
             return true;
         }
 

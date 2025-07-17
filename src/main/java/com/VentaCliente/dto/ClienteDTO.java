@@ -24,6 +24,7 @@ public class ClienteDTO implements Serializable {
     private Long id;
     private String nombre;
     private String telefono;
+    private String correo;
 
     // Solo si necesitas las ventas del cliente (opcional)
     private List<VentaDTO> ventas;
@@ -36,6 +37,7 @@ public class ClienteDTO implements Serializable {
                 .id(model.getId())
                 .nombre(model.getNombre())
                 .telefono(model.getTelefono())
+                .correo(model.getCorreo())
                 //.ventas(VentaDTO.toDto(model.getVentas()))
                 .build();
     }

@@ -14,10 +14,11 @@ import com.VentaCliente.service.ClienteService;
 import com.VentaCliente.service.VentaReportService;
 import com.VentaCliente.service.VentaService;
 import com.itextpdf.text.DocumentException;
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.*;
@@ -28,13 +29,14 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.util.Enumeration;
 import java.util.List;
 
 @Controller
 @RequestMapping("/ventas")
 @RequiredArgsConstructor
 public class VentaController {
+    private static final Logger logger = LoggerFactory.getLogger(VentaController.class); // <<-- Nuevo: Logger
+
 
     private final VentaService ventaService;
     private final ClienteService clienteService;
@@ -142,39 +144,52 @@ public class VentaController {
         return "redirect:/ventas/listVenta";
     }
 
-    @PostMapping("/actualizar-estado")
-    public String actualizarEstado(
-            HttpServletRequest request, // Inyectar HttpServletRequest para depuración
-            @RequestParam("id_ventas") Long id,
-            @RequestParam("nuevoEstado") String nuevoEstado) {
+   /* @PostMapping("/actualizar-estado")
+    public String actualizarEstado(@RequestParam(name = "id_ventas") Long id,
+                                   @RequestParam(name = "nuevoEstado") String nuevoEstado) {
 
-        // --- INICIO DE LA SECCIÓN DE DEPURACIÓN ---
-        System.out.println("--- Depuración de Parámetros de Solicitud ---");
-        Enumeration<String> parameterNames = request.getParameterNames();
-        while (parameterNames.hasMoreElements()) {
-            String paramName = parameterNames.nextElement();
-            String paramValue = request.getParameter(paramName);
-            System.out.println("Parámetro recibido: '" + paramName + "' = '" + paramValue + "'");
-        }
-        System.out.println("------------------------------------------");
-
-        String idStrFromRequest = request.getParameter("id_ventas");
-        System.out.println("Valor de 'id_ventas' directamente del Request: '" + idStrFromRequest + "'");
-        // --- FIN DE LA SECCIÓN DE DEPURACIÓN ---
-
-        System.out.println("🟢 ID recibido por @RequestParam: " + id); // Este será null si falla la conversión
-        System.out.println("🟢 Estado recibido por @RequestParam: " + nuevoEstado);
-
-        // Si 'id' es null aquí, la conversión falló.
-        // Puedes añadir una comprobación para evitar NullPointerException si la lógica de negocio lo permite
-        if (id == null) {
-            System.err.println("Error: 'id_ventas' no pudo ser convertido a Long. Valor recibido: '" + idStrFromRequest + "'");
-            // Aquí podrías redirigir a una página de error o mostrar un mensaje al usuario
-            return "redirect:/ventas/errorPage"; // Ejemplo de redirección a error
-        }
+        System.out.println("🧪 ID recibido (RequestParam): " + id);
+        System.out.println("🧪 Estado recibido (RequestParam): " + nuevoEstado);
 
         ventaService.actualizarEstado(id, nuevoEstado);
         return "redirect:/ventas/listVenta";
+    }*/
+
+
+
+        // ... (tus otros métodos) ...
+
+        @PostMapping("/actualizar-estado")
+        public String actualizarEstado(
+                // HttpServletRequest request, // Puedes eliminar esto si ya no lo necesitas para depurar
+                @RequestParam("id_ventas") Long id,
+                @RequestParam("nuevoEstado") String nuevoEstado) {
+
+
+            // --- INICIO DE LA SECCIÓN DE LOGGING ---
+            logger.info("--- Depuración de Parámetros de Solicitud ---");
+            logger.info("Parámetro recibido: 'id_ventas' = '{}'", id);
+            logger.info("Parámetro recibido: 'nuevoEstado' = '{}'", nuevoEstado);
+            logger.info("------------------------------------------");
+            // --- FIN DE LA SECCIÓN DE LOGGING ---
+
+            if (id == null) {
+                logger.error("Error: 'id_ventas' no pudo ser convertido a Long. Valor recibido: null");
+                return "redirect:/ventas/errorPage";
+            }
+
+            try {
+                ventaService.actualizarEstado(id, nuevoEstado);
+                logger.info("Estado de la venta ID {} actualizado a {}", id, nuevoEstado);
+            } catch (RuntimeException e) { // Captura la RuntimeException del servicio
+                logger.error("Error al actualizar el estado de la venta ID {}: {}", id, e.getMessage());
+                // Aquí puedes decidir cómo manejar el error, por ejemplo, redirigir a una página de error
+                // o añadir un atributo al modelo para mostrar un mensaje de error en la vista.
+                return "redirect:/ventas/errorPage"; // Ejemplo: redirige a una página de error genérica
+            }
+
+            return "redirect:/ventas/listVenta";
+        }
+
     }
 
-}

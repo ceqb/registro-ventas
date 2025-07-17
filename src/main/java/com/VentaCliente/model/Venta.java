@@ -2,13 +2,16 @@ package com.VentaCliente.model;
 
 import com.VentaCliente.dto.ClienteDTO;
 import com.VentaCliente.dto.VentaDTO;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -28,6 +31,10 @@ public class Venta implements Serializable {
 
     @Column(name = "producto")
     private String producto;
+
+    @Column(name = "fecha_venta")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime fechaVenta;
 
     @Column(name = "cantidad")
     private Integer cantidad;
@@ -58,6 +65,7 @@ public class Venta implements Serializable {
         return Venta.builder()
                 .id_ventas(dto.getId_ventas())
                 .producto(dto.getProducto())
+                .fechaVenta(dto.getFechaVenta())
                 .cantidad(dto.getCantidad())
                 .precioUnitario(dto.getPrecioUnitario())
                 .total(dto.getCantidad() * dto.getPrecioUnitario())

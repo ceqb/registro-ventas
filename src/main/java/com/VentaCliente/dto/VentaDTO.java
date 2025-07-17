@@ -3,6 +3,7 @@ package com.VentaCliente.dto;
 import com.VentaCliente.model.Cliente;
 import com.VentaCliente.model.EstadoVenta;
 import com.VentaCliente.model.Venta;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.*;
@@ -10,8 +11,10 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -27,6 +30,8 @@ public class VentaDTO implements Serializable {
 
     private Long id_ventas;
     private String producto;
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime fechaVenta;
     private Integer cantidad;
     private Double precioUnitario;
     private Double total;
@@ -43,6 +48,7 @@ public class VentaDTO implements Serializable {
         return VentaDTO.builder()
                 .id_ventas(model.getId_ventas())
                 .producto(model.getProducto())
+                .fechaVenta(model.getFechaVenta())
                 .cantidad(model.getCantidad())
                 .precioUnitario(model.getPrecioUnitario())
                 .total(model.getTotal())

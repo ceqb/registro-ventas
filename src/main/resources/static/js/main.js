@@ -51,30 +51,56 @@ $(document).ready(function(){
             window.location=LinkExitSystem; 
         });  
     });
-    $('.search-book-button').click(function(e){
-        e.preventDefault();
-        var LinkSearchBook=$(this).attr("data-href");
-        swal({
-           title: "¿Qué libro estás buscando?",
-           text: "Por favor escribe el nombre del libro",
-           type: "input",   
-           showCancelButton: true,
-           closeOnConfirm: false,
-           animation: "slide-from-top",
-           cancelButtonText: "Cancelar",
-           confirmButtonText: "Buscar",
-           confirmButtonColor: "#3598D9",
-           inputPlaceholder: "Escribe aquí el nombre de libro" }, 
-      function(inputValue){
-           if (inputValue === false) return false;  
 
-           if (inputValue === "") {
-               swal.showInputError("Debes escribir el nombre del libro");     
-               return false;   
-           } 
-            window.location=LinkSearchBook+"?bookName="+inputValue;
+   //------------------------SWEATALERT PARA LA BUSQUEDA-----------------------//
+
+   /*
+    $('.search-book-button').click(function(e){
+     e.preventDefault();
+
+     swal({
+       title: "¿Qué cliente estás buscando?",
+       text: "Por favor escribe el nombre del cliente",
+       type: "input",
+       showCancelButton: true,
+       closeOnConfirm: false,
+       animation: "slide-from-top",
+       cancelButtonText: "Cancelar",
+       confirmButtonText: "Buscar",
+       confirmButtonColor: "#3598D9",
+       inputPlaceholder: "Escribe aquí el nombre de cliente"
+     }, function(inputValue){
+       if (inputValue === false) return false;
+
+       if (inputValue === "") {
+         swal.showInputError("Debes escribir el nombre del cliente");
+         return false;
+       }
+
+       swal.close();
+
+       let filtro = inputValue.toLowerCase();
+       let filas = document.querySelectorAll('#tabla-clientes tbody tr');
+
+       let encontrados = 0;
+       filas.forEach(fila => {
+         let nombre = fila.cells[6].textContent.toLowerCase(); // Cliente en columna 7
+         if (nombre.includes(filtro)) {
+           fila.style.display = '';
+           encontrados++;
+         } else {
+           fila.style.display = 'none';
+         }
        });
-    });
+
+       // Mostrar el botón para restaurar la tabla
+       document.getElementById('mostrarTodosBtn').style.display = 'inline-block';
+
+       if (encontrados === 0) {
+         swal("Sin resultados", "No se encontraron clientes con ese nombre", "warning");
+       }
+     });
+   });*/
     $('.btn-help').on('click', function(){
         $('#ModalHelp').modal({
             show: true,

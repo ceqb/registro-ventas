@@ -6,20 +6,20 @@ server:
 
 spring:
   datasource:
-    #url: jdbc:mysql://localhost:3306/bd_clienteventa
-    #username: root
-    #password: 1234
-    #driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:postgresql://dpg-d1m5crumcj7s739s6ptg-a/ventas_db_g4fp
-    username: ventas_db_g4fp_user
-    password: PbqWxx2GLKgq9kgGNGIocGNFXHKJKzPG
-    driver-class-name: org.postgresql.Driver
+    url: jdbc:mysql://localhost:3306/bd_clienteventa
+    username: root
+    password: 1234
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    #url: jdbc:postgresql://dpg-d1m5crumcj7s739s6ptg-a/ventas_db_g4fp
+    #username: ventas_db_g4fp_user
+    #password: PbqWxx2GLKgq9kgGNGIocGNFXHKJKzPG
+    #driver-class-name: org.postgresql.Driver
   #web:
     #resources:
       #static-locations: classpath:/static/
   jpa:
-    #database-platform: org.hibernate.dialect.MySQLDialect
-    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    database-platform: org.hibernate.dialect.MySQLDialect
+    #database-platform: org.hibernate.dialect.PostgreSQLDialect
     generate-ddl: true
     show-sql: false
     hibernate:
@@ -27,6 +27,29 @@ spring:
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
     open-in-view: false
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: ${correo.from}    # Tu correo hotmail
+    password: ${MAIL_PASSWORD}  # Variable de entorno segura
+    protocol: smtp
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+# Correos personalizados (configuración propia)
+correo:
+  admin: crearveint@gmail.com                # Correo del admin que recibe el resumen
+  from: crearveint@gmail.com
+      # Correo remitente (igual al mail.username)
+  tomcat:
+    remoteip:
+      remote-ip-header: x-forwarded-for
+      protocol-header: x-forwarded-proto
+      internal-proxies: 10\.\d{1,3}\.\d{1,3}\.\d{1,3}|192\.\168\.\d{1,3}\.\d{1,3}|172\.(1[6-9]|2[0-9]|3[0-1])\.\d{1,3}\.\d{1,3}|127\.\d{1,3}\.\d{1,3}\.\d{1,3}
 
   error:
     include-message: always

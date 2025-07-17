@@ -35,7 +35,7 @@
 		<div class="nav-lateral-divider full-reset"></div>
 		<div class="full-reset" style="padding: 10px 0; color:#fff;">
 			<figure>
-				<img th:src="@{/assets/img/logo.png}" alt="Tareas" class="img-responsive center-box"
+				<img th:src="@{/assets/img/logo.png}" alt="EntregaRecepcion" class="img-responsive center-box"
 					 style="width:55%;">
 			</figure>
 			<p class="text-center" style="padding-top: 15px;">Sistema registro de ventas</p>
@@ -43,11 +43,7 @@
 		<div class="nav-lateral-divider full-reset"></div>
 		<div class="full-reset nav-lateral-list-menu">
 			<ul class="list-unstyled">
-				<li><a th:href="@{/home}"><i class="zmdi zmdi-home zmdi-hc-fw"></i>&nbsp;&nbsp;
-					Inicio</a></li>
-				<li><a th:href="@{/ventas/ver-reporte-pdf}" target="_blank"><i class="zmdi zmdi-trending-up zmdi-hc-fw"></i>&nbsp;&nbsp; Reportes y
-					estadísticas</a></li>
-
+				<li><a th:href="@{/home}"><i class="zmdi zmdi-home zmdi-hc-fw"></i>&nbsp;&nbsp; Inicio</a></li>
 			</ul>
 		</div>
 	</div>
@@ -60,16 +56,23 @@
 					 class="img-responsive img-circle center-box">
 			</figure>
 			<li style="color:#fff; cursor:default;">
-				<span class="all-tittles">Admin Name</span>
+				<span>Bienvenido, <strong th:text="${session.usuarioLogueado.nombre}">Usuario</strong></span>
 			</li>
-			<li class="tooltips-general exit-system-button" data-href="home" data-placement="bottom"
+			<li class="tooltips-general exit-system-button" th:data-href="@{/logout}" data-placement="bottom"
 				title="Salir del sistema">
 				<i class="zmdi zmdi-power"></i>
 			</li>
-			<li class="tooltips-general search-book-button" data-href="searchbook.html" data-placement="bottom"
-				title="Buscar libro">
+			<!--------------------BOTON  INPUT BUSCAR CLIENTES MEDIANTE EL SWEATALERT-------------------------
+			<li class="tooltips-general search-book-button" title="Buscar cliente">
 				<i class="zmdi zmdi-search"></i>
 			</li>
+			-------------------------------------------------------------------------------------------------->
+
+			<!----------------------BOTON  INPUT BUSCAR TODOS LOS CLIENTES EN EL SWEATALERT-------------------
+			<li class="mb-3">
+				<button id="mostrarTodosBtn" class="btn btn-default" style="display: none;">Mostrar todos</button>
+			</li>
+			-------------------------------------------------------------------------------------------------->
 			<li class="tooltips-general btn-help" data-placement="bottom" title="Ayuda">
 				<i class="zmdi zmdi-help-outline zmdi-hc-fw"></i>
 			</li>
@@ -105,6 +108,7 @@
 				<ol class="breadcrumb">
 					<li><a th:href="@{/ventas/register}">Nueva Venta</a></li>
 					<li class="active">Listado de tareas</li>
+
 				</ol>
 			</div>
 		</div>
@@ -112,7 +116,10 @@
 	<div class="container-fluid">
 		<h2 class="text-center all-tittles">Listado de Tareas</h2>
 		<div class="table-responsive">
-			<table class="table table-hover">
+			<table class="table table-hover" id="tabla-clientes">
+				<div class="mb-3">
+					<input type="text" id="buscarCliente" class="form-control" placeholder="🔍 Buscar una venta por cliente...">
+				</div>
 				<thead class="thead-light">
 				<tr>
 					<th>#</th>
@@ -122,6 +129,7 @@
 					<th>Total</th>
 					<th>Estado</th>
 					<th>Cliente</th>
+					<th>Fecha Venta</th>
 					<th>Acciones</th>
 				</tr>
 				</thead>
@@ -139,6 +147,7 @@
 					<td th:text="${venta.total}">Total</td>
 					<td th:text="${venta.estadoDescripcion}">Estado</td>
 					<td th:text="${venta.clienteDTO.nombre}">Cliente</td>
+					<td th:text="${venta.fechaVenta}">Fecha Venta</td>
 					<td>
 						<!-- Botón para abrir el modal de actualización de estado (Bootstrap 3.4.1) -->
 						<button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modalEstado"
@@ -255,5 +264,40 @@
 
 <!-- Script personalizado para modal (integrado o en archivo externo) -->
 <script th:src="@{/js/modalActualizarEstado.js}"></script>
+
+<!------------------------MOSTRAR TODAS LAS VENTAS EN E BUSCADOR------------------------
+<script>
+	document.getElementById('mostrarTodosBtn').addEventListener('click', function() {
+      let filas = document.querySelectorAll('#tabla-clientes tbody tr');
+      filas.forEach(fila => {
+        fila.style.display = '';
+      });
+      this.style.display = 'none'; // Oculta el botón otra vez
+    });
+</script>
+---------------------------------------------------------------------------------------->
+<script>
+	document.addEventListener("DOMContentLoaded", function () {
+      const input = document.getElementById('buscarCliente');
+      const tabla = document.getElementById('tabla-clientes');
+      const filas = tabla.getElementsByTagName('tr');
+
+      input.addEventListener('keyup', function () {
+        const filtro = input.value.toLowerCase();
+
+        for (let i = 1; i < filas.length; i++) {
+          const columnas = filas[i].getElementsByTagName('td');
+          if (columnas.length > 0) {
+            const nombreCliente = columnas[6].textContent.toLowerCase();
+            if (nombreCliente.includes(filtro)) {
+              filas[i].style.display = '';
+            } else {
+              filas[i].style.display = 'none';
+            }
+          }
+        }
+      });
+    });
+</script>
 </body>
 </html>

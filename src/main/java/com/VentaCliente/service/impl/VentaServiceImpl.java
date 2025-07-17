@@ -8,6 +8,7 @@ import com.VentaCliente.exception.ResourceNotFoundException;
 import com.VentaCliente.model.EstadoVenta;
 import com.VentaCliente.model.Venta;
 import com.VentaCliente.repository.VentaRepository;
+import com.VentaCliente.service.AuditoriaClientService;
 import com.VentaCliente.service.VentaService;
 import lombok.RequiredArgsConstructor;
 
@@ -24,6 +25,7 @@ import java.util.Optional;
 public class VentaServiceImpl implements VentaService {
 
     private final VentaRepository ventaRepository;
+    private final AuditoriaClientService auditoriaClient;
 
 
 
@@ -38,7 +40,16 @@ public class VentaServiceImpl implements VentaService {
     @Override
     public VentaDTO save(VentaDTO ventaDTO) {
         Venta venta = Venta.toModel(ventaDTO);
+        venta.setFechaVenta(LocalDateTime.now());
         Venta ventaGuardada = ventaRepository.save(venta);
+       /* auditoriaClient.registrar(
+                "Venta",
+                "CREACIÓN",
+                "Se registró una nueva venta con ID: " + ventaGuardada.getId_ventas()
+        );
+
+        */
+
         return VentaDTO.toDto(ventaGuardada);
     }
 
@@ -57,6 +68,13 @@ public class VentaServiceImpl implements VentaService {
 
         Venta ventaActualizada = ventaRepository.save(venta);
         return VentaDTO.toDto(ventaActualizada);
+    }
+
+    @Override
+    public List<VentaDTO> findByEstado(EstadoVenta estado) {
+    List<Venta>ventas=ventaRepository.findByEstado(estado);
+    return VentaDTO.toDto(ventas);
+
     }
 
 
