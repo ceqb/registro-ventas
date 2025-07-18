@@ -146,7 +146,7 @@ public class UsuarioServiceImpl implements UsuarioService {
         }
 
         String userAgent = request.getHeader("User-Agent");
-/*
+
         auditoriaAccesoService.registrarAuditoriaAcceso(
                 usuario,
                 "Desbloqueo desde IP: " + ip,
@@ -154,8 +154,6 @@ public class UsuarioServiceImpl implements UsuarioService {
                 true,
                 "Desbloqueo exitoso con código"
         );
-
- */
         return UsuarioDTO.toDto(actualizado);
     }
 
